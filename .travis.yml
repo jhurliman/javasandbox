@@ -4,7 +4,7 @@ jdk:
 	- oraclejdk7
 	- openjdk7
 
-script: mvn -f hellomaven/pom.xml test
+script: mvn -f hello.frontend/pom.xml test
 
 notifications:
 	irc:

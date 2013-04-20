@@ -3,15 +3,30 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jhurliman</groupId>
 	<artifactId>hello.frontend</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<name>Hello Frontend Bundle</name>
 	<packaging>bundle</packaging>
 	<properties>
-		<java.version>1.7</java.version>
+		<java.version>1.6</java.version>
 		<spring.version>3.2.2.RELEASE</spring.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-catalina</artifactId>
+			<version>7.0.29</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-coyote</artifactId>
+			<version>7.0.29</version>
+		</dependency>
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>org.osgi.core</artifactId>
+			<version>4.3.0</version>
+		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>com.springsource.org.apache.commons.logging</artifactId>
@@ -30,6 +45,11 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>org.springframework.context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>org.springframework.web</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
 		<!-- test dependencies -->
@@ -71,18 +91,29 @@
 				<version>2.3.7</version>
 				<extensions>true</extensions>
 				<configuration>
-					<manifestLocation>src/main/java/META-INF</manifestLocation>
+					<manifestLocation>src/main/webapp/META-INF</manifestLocation>
 					<supportedProjectTypes>
-						<supportedProjectType>jar</supportedProjectType>
+						<supportedProjectType>war</supportedProjectType>
 						<supportedProjectType>bundle</supportedProjectType>
 					</supportedProjectTypes>
 					<instructions>
 						<Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
 						<Bundle-Version>${project.version}</Bundle-Version>
-						<Include-Resource>
-							{maven-resources},META-INF/spring=src/main/java/META-INF/spring
-						</Include-Resource>
+						<Import-Package>org.eclipse.virgo.web.dm;version="3.6.1.RELEASE",*</Import-Package>
+						<Import-Library>org.springframework.spring;version="${spring.version}"</Import-Library>
 					</instructions>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes>
+					<warName>org.jhurliman.hello.frontend</warName>
+					<archive>
+						<manifestFile>src/main/webapp/META-INF/MANIFEST.MF</manifestFile>
+					</archive>
 				</configuration>
 			</plugin>
 		</plugins>

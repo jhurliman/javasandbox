@@ -1,6 +1,12 @@
 *.class
+*.DS_Store
+src/main/webapp/META-INF/MANIFEST.MF
 
 # Package Files #
 *.jar
 *.war
 *.ear
+
+# Editor Byproducts #
+*.swp
+/target

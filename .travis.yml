@@ -1,16 +1,16 @@
 language: java
 
 jdk:
-	- oraclejdk7
-	- openjdk7
+  - oraclejdk7
+  - openjdk7
 
 script: mvn -f hello.frontend/pom.xml test
 
 notifications:
-	irc:
-		channels:
-			- "irc.freenode.org#jhurliman"
-		on_success: change
-		on_failure: always
-		template:
-			- "%{repository} (%{branch}:%{commit} by %{author}): %{message} (%{build_url})" 
+  irc:
+    channels:
+      - "irc.freenode.org#jhurliman"
+    on_success: change
+    on_failure: always
+    template:
+      - "%{repository} (%{branch}:%{commit} by %{author}): %{message} (%{build_url})" 

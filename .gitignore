@@ -13,5 +13,6 @@ MANIFEST.MF
 target/
 
 # Virgo Kernel Runtime Files #
-virgo-kernel-3.6.1.RELEASE/stage
-virgo-kernel-3.6.1.RELEASE/work
+virgo-tomcat-server-3.6.1.RELEASE/serviceability
+virgo-tomcat-server-3.6.1.RELEASE/stage
+virgo-tomcat-server-3.6.1.RELEASE/work

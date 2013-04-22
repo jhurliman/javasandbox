@@ -5,10 +5,10 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jhurliman.hello</groupId>
-	<artifactId>frontend</artifactId>
+	<artifactId>backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Hello Frontend Bundle</name>
-	<packaging>war</packaging>
+	<name>Hello Backend Bundle</name>
+	<packaging>bundle</packaging>
 
 	<properties>
 		<java.version>1.6</java.version>
@@ -17,21 +17,6 @@
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-catalina</artifactId>
-			<version>7.0.29</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-coyote</artifactId>
-			<version>7.0.29</version>
-		</dependency>
-		<dependency>
-			<groupId>org.osgi</groupId>
-			<artifactId>org.osgi.core</artifactId>
-			<version>4.3.0</version>
-		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>com.springsource.org.apache.commons.logging</artifactId>
@@ -54,14 +39,9 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>org.springframework.web</artifactId>
+			<artifactId>org.springframework.spring-library</artifactId>
+			<type>libd</type>
 			<version>${spring.version}</version>
-		</dependency>
-		<!-- project dependencies -->
-		<dependency>
-			<groupId>org.jhurliman.hello</groupId>
-			<artifactId>backend</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<!-- test dependencies -->
 		<dependency>
@@ -103,43 +83,40 @@
 				<version>2.3.7</version>
 				<extensions>true</extensions>
 				<configuration>
-					<manifestLocation>src/main/webapp/META-INF</manifestLocation>
+					<manifestLocation>src/main/java/META-INF</manifestLocation>
 					<supportedProjectTypes>
-						<supportedProjectType>war</supportedProjectType>
+						<supportedProjectType>jar</supportedProjectType>
 						<supportedProjectType>bundle</supportedProjectType>
 					</supportedProjectTypes>
 					<instructions>
 						<Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
 						<Bundle-Version>${project.version}</Bundle-Version>
-						<Bundle-ClassPath>.,{maven-dependencies},WEB-INF/classes</Bundle-ClassPath>
-						<Web-ContextPath>helloworld</Web-ContextPath>
-						<Import-Library>org.springframework.spring;version="${spring.version}"</Import-Library>
-						<Import-Package>org.eclipse.virgo.web.dm;version="[3.0.0, 4.0.0)",*</Import-Package>
+						<Bundle-ClassPath>.,{maven-dependencies}</Bundle-ClassPath>
+						<Include-Resource>
+							{maven-resources},
+							META-INF/spring=src/main/java/META-INF/spring
+						</Include-Resource>
 					</instructions>
 				</configuration>
-				<executions>
-					<execution>
-						<id>bundle</id>
-						<goals>
-							<goal>manifest</goal>
-						</goals>
-						<phase>prepare-package</phase>
-						<inherited>true</inherited>
-					</execution>
-				</executions>
 			</plugin>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.3</version>
+				<artifactId>maven-dependency-plugin</artifactId>
 				<configuration>
-					<packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes>
-					<warName>org.jhurliman.hello.frontend</warName>
-					<archive>
-						<manifestFile>src/main/webapp/META-INF/MANIFEST.MF</manifestFile>
-					</archive>
+					<outputDirectory>${project.build.outputDirectory}/lib</outputDirectory>
+					<includeScope>runtime</includeScope>
+					<excludeScope>provided</excludeScope>
 				</configuration>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 
@@ -152,6 +129,31 @@
 					<configuration>
 						<source>${java.version}</source>
 						<target>${java.version}</target>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-dependency-plugin</artifactId>
+										<versionRange>[2.0,)</versionRange>
+										<goals>
+											<goal>copy-dependencies</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
 					</configuration>
 				</plugin>
 			</plugins>

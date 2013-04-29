@@ -13,7 +13,7 @@ import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
 
-import org.jhurliman.hello.backend.IHelloService;
+import org.jhurliman.hello.core.IHelloService;
 
 public class HelloServlet extends HttpServlet {
 	BundleContext _bc = FrameworkUtil.getBundle(this.getClass()).getBundleContext();

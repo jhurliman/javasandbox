@@ -1,4 +1,4 @@
-package org.jhurliman.hello.backend;
+package org.jhurliman.hello.core;
 
 /**
  * Interface for services that say hello.

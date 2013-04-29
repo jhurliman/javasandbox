@@ -60,8 +60,8 @@
 		<!-- project dependencies -->
 		<dependency>
 			<groupId>org.jhurliman.hello</groupId>
-			<artifactId>backend</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<artifactId>core</artifactId>
+			<version>[0.0.1-SNAPSHOT, 1.0.0)</version>
 		</dependency>
 		<!-- test dependencies -->
 		<dependency>

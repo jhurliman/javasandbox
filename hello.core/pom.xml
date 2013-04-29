@@ -5,9 +5,9 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jhurliman.hello</groupId>
-	<artifactId>backend</artifactId>
+	<artifactId>core</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Hello Backend Bundle</name>
+	<name>Hello Core Bundle</name>
 	<packaging>bundle</packaging>
 
 	<properties>
@@ -17,68 +17,9 @@
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>com.springsource.org.apache.commons.logging</artifactId>
-			<version>1.1.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>org.springframework.core</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>org.springframework.beans</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>org.springframework.context</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>org.springframework.spring-library</artifactId>
-			<type>libd</type>
-			<version>${spring.version}</version>
-		</dependency>
-		<!-- project dependencies -->
-		<dependency>
-			<groupId>org.jhurliman.hello</groupId>
-			<artifactId>core</artifactId>
-			<version>[0.0.1-SNAPSHOT, 1.0.0)</version>
-		</dependency>
-		<!-- test dependencies -->
-		<dependency>
-			<groupId>org.junit</groupId>
-			<artifactId>com.springsource.org.junit</artifactId>
-			<version>4.11.0</version>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 
 	<repositories>
-		<repository>
-			<id>com.springsource.repository.bundles.release</id>
-			<name>SpringSource Enterprise Bundle Repository - SpringSource Releases</name>
-			<url>http://repository.springsource.com/maven/bundles/release</url>
-		</repository>
-		<repository>
-			<id>com.springsource.repository.bundles.external</id>
-			<name>SpringSource Enterprise Bundle Repository - External Releases</name>
-			<url>http://repository.springsource.com/maven/bundles/external</url>
-		</repository>
-		<repository>
-			<id>com.springsource.repository.libraries.release</id>
-			<name>SpringSource Enterprise Bundle Repository - SpringSource Library Releases</name>
-			<url>http://repository.springsource.com/maven/libraries/release</url>
-		</repository>
-		<repository>
-			<id>com.springsource.repository.libraries.external</id>
-			<name>SpringSource Enterprise Bundle Repository - External Library Releases</name>
-			<url>http://repository.springsource.com/maven/libraries/external</url>
-		</repository>
 	</repositories>
 
 	<build>
@@ -98,10 +39,7 @@
 						<Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
 						<Bundle-Version>${project.version}</Bundle-Version>
 						<Bundle-ClassPath>.,{maven-dependencies}</Bundle-ClassPath>
-						<Include-Resource>
-							{maven-resources},
-							META-INF/spring=src/main/java/META-INF/spring
-						</Include-Resource>
+						<Include-Resource>{maven-resources},</Include-Resource>
 					</instructions>
 				</configuration>
 			</plugin>

@@ -16,6 +16,8 @@ import org.osgi.framework.ServiceReference;
 import org.jhurliman.hello.core.IHelloService;
 
 public class HelloServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
 	BundleContext _bc = FrameworkUtil.getBundle(this.getClass()).getBundleContext();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

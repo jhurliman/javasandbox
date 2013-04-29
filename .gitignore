@@ -11,6 +11,9 @@
 *.swp
 MANIFEST.MF
 target/
+.classpath
+.project
+.settings/
 
 # Virgo Kernel Runtime Files #
 virgo-tomcat-server-3.6.1.RELEASE/serviceability

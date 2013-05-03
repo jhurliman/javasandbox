@@ -8,7 +8,7 @@
 			http://www.springframework.org/schema/osgi/spring-osgi-1.1.xsd">
 
 	<!-- Exports the service implementation to other bundles by its service interface -->
-	<osgi:service id="HelloServiceExporter" ref="HelloService" interface="org.jhurliman.hello.backend.IHelloService">
+	<osgi:service id="HelloServiceExporter" ref="HelloService" interface="org.jhurliman.hello.core.IHelloService">
 		<osgi:service-properties>
 			<entry key="discoverableID" value="helloService" />
 		</osgi:service-properties>

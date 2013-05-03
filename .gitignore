@@ -5,6 +5,7 @@
 *.jar
 *.war
 *.ear
+*.libd
 
 # Compiler/IDE Byproducts #
 *.class

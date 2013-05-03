@@ -2,10 +2,15 @@
 
 VIRGO_SERVER="virgo-tomcat-server-3.6.1.RELEASE"
 
-mvn -f hello.backend/pom.xml install
-cp hello.backend/target/*.jar $VIRGO_SERVER/pickup/
+# Compile
+mvn -f hello/pom.xml install
 
-mvn -f hello.frontend/pom.xml install
-cp hello.frontend/target/*.war $VIRGO_SERVER/pickup/
+# Copy dependencies to Virgo
+cp hello.*/target/classes/lib/* $VIRGO_SERVER/repository/usr/
 
+# Copy compiled application to Virgo
+cp hello.*/target/*.jar $VIRGO_SERVER/pickup/
+cp hello.*/target/*.war $VIRGO_SERVER/pickup/
+
+# Start the Virgo server
 ./$VIRGO_SERVER/bin/startup.sh

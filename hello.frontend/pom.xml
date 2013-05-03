@@ -135,7 +135,7 @@
 				<version>2.3</version>
 				<configuration>
 					<packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes>
-					<warName>org.jhurliman.hello.frontend</warName>
+					<warName>${project.groupId}.${project.artifactId}-${project.version}</warName>
 					<archive>
 						<manifestFile>src/main/webapp/META-INF/MANIFEST.MF</manifestFile>
 					</archive>
